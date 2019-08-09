@@ -23,7 +23,7 @@ class Vampire {
   get numberOfVampiresFromOriginal() {
     let currentVampire = this;
     let counter = 0;
-    while(currentVampire.creator !== null){
+    while (currentVampire.creator !== null) {
       currentVampire = currentVampire.creator;
       counter++;
     }
@@ -32,7 +32,18 @@ class Vampire {
 
   // Returns true if this vampire is more senior than the other vampire. (Who is closer to the original vampire)
   isMoreSeniorThan(vampire) {
-
+    let currentVampire = this;
+    //edge case for when input is root vampire
+    if(vampire.creator === null) {
+      return false;
+    }
+    while (currentVampire.creator !== null) {
+      currentVampire = currentVampire.creator;
+      if (currentVampire.offspring.includes(vampire)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   /** Stretch **/
