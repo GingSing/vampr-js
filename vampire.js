@@ -24,7 +24,7 @@ class Vampire {
     let currentVampire = this;
     let counter = 0;
     while(currentVampire.creator !== null){
-      currentVampire = this.creator;
+      currentVampire = currentVampire.creator;
       counter++;
     }
     return counter;
