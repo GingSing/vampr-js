@@ -11,6 +11,7 @@ class Vampire {
   // Adds the vampire as an offspring of this vampire
   addOffspring(vampire) {
     this.offspring.push(vampire);
+    vampire.creator = this;
   }
 
   // Returns the total number of vampires created by that vampire
@@ -20,7 +21,13 @@ class Vampire {
 
   // Returns the number of vampires away from the original vampire this vampire is
   get numberOfVampiresFromOriginal() {
-
+    let currentVampire = this;
+    let counter = 0;
+    while(currentVampire.creator !== null){
+      currentVampire = this.creator;
+      counter++;
+    }
+    return counter;
   }
 
   // Returns true if this vampire is more senior than the other vampire. (Who is closer to the original vampire)
